@@ -1,4 +1,4 @@
-const { sendMessage } = require('./sendMessage');
+const { sendMessage } = require('../handles/sendMessage');
 
 function handlePostback(event) {
     const senderId = event.sender.id;

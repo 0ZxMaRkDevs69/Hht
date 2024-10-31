@@ -1,5 +1,5 @@
-const { sendMessage } = require('./sendMessage');
-const { processCommand } = require('./commands');
+const { sendMessage } = require('../handles/sendMessage');
+const { processCommand } = require('../commands/commands');
 
 function handleMessage(event) {
     const senderId = event.sender.id;

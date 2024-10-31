@@ -1,16 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { handleMessage } = require('./handleMessage');
-const { handlePostback } = require('./handlePostback');
+const { handleMessage } = require('./handles/handleMessage');
+const { handlePostback } = require('./handles/handlePostback');
 require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
 
-// قراءة Verify Token من البيئة
+// Verify Token 
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN || 'default_token';
 
-// التحقق من Webhook
+//Webhook
 app.get('/webhook', (req, res) => {
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
@@ -26,7 +26,7 @@ app.get('/webhook', (req, res) => {
     }
 });
 
-// استقبال الرسائل والـ postbacks
+// postbacks
 app.post('/webhook', (req, res) => {
     let body = req.body;
 
@@ -47,7 +47,7 @@ app.post('/webhook', (req, res) => {
     }
 });
 
-// بدء السيرفر
+//port
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
